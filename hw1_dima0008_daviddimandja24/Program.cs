@@ -17,7 +17,7 @@ class Program
         {
             Console.Clear();
 
-            // Please write down your name first. 
+            // Please write down your name first.
             Console.WriteLine("My name is David Dimandja. My OU 4x4 is dima0008, and my GitHub account name is @daviddimandja24. \n");
 
             Console.WriteLine("=== CALCULATOR SYSTEM ===");
@@ -61,19 +61,31 @@ class Program
         string item = Console.ReadLine();
 
         Console.WriteLine($"How many{item}'s do you want to buy?");
-        double tickets = Convert.ToDouble(Console.ReadLine());
+        int quantity = int.Parse(Console.ReadLine());
 
         Console.WriteLine($"What is the price for each {item}");
         double price = Convert.ToDouble(Console.ReadLine());
 
-        // calculate total
-        double subtotal = tickets * price;
-        double sales_tax = subtotal * .085;
-        
+        // setup tax constant
+        const double sales_tax_percent = .085;
 
-            Console.WriteLine($"Your subtotal for your bill is {subtotal:C2}");
-            Console.WriteLine($"Your sales tax for your bill is {sales_tax:C2}");
-            Console.WriteLine($"Your total for your bill is {subtotal + sales_tax:C2}");
+        // calculate total
+        double subtotal = quantity * price;
+        double sales_tax = subtotal * sales_tax_percent;
+        double total = subtotal + sales_tax;
+
+        Console.WriteLine($"Your subtotal for your bill is {subtotal:C2}");
+        Console.WriteLine($"Your sales tax for your bill is {sales_tax:C2}");
+        Console.WriteLine($"Your total for your bill is {total:C2}");
+
+        // also where you write your pseudocodes
+
+        // Enter itemtype
+        // string itemtype = "xxx";
+
+        // Enter quantity
+        // int qty
+
 
         Console.WriteLine("\nPress any key to return to menu...");
         Console.ReadKey();
@@ -111,11 +123,16 @@ class Program
         Console.WriteLine("What is your overall percentage grade for the final?");
         double final = Convert.ToDouble(Console.ReadLine());
 
-        double totalsum = (homeworks + participations + quizzes + midterm + final);
-        double percentage = ((homeworks + participations + quizzes + midterm + final) / totalsum) * 100;
+        const double homeworks_percentage = 0.20;
+        const double particpations_percentage = 0.20;
+        const double quizzes_percentage = 0.20;
+        const double midterm_percentage = 0.20;
+        const double final_percentage = 0.20;
 
-        Console.WriteLine($"{first_name} {last_name} ({student_id}), your final grade is {percentage:F2}%");
-        
+        double final_grade = ((homeworks * homeworks_percentage) + (participations * particpations_percentage) + (quizzes * quizzes_percentage) + (midterm * midterm_percentage) + (final * final_percentage));
+
+        Console.WriteLine($"{first_name} {last_name} ({student_id}), your final grade is {final_grade:F2}%");
+
         Console.WriteLine("\nPress any key to return to menu...");
         Console.ReadKey();
     }
