@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -17,8 +16,8 @@ class Program
         {
             Console.Clear();
 
-            // Please write down your name first.
-            Console.WriteLine("My name is David Dimandja. My OU 4x4 is dima0008, and my GitHub account name is @daviddimandja24. \n");
+            // Please write down your name first. 
+            Console.WriteLine("My name is xxx xxx. My OU 4x4 is xxx, and my GitHub account name is @xxxxxx. \n");
 
             Console.WriteLine("=== CALCULATOR SYSTEM ===");
             Console.WriteLine("1) Calculate Sale Total");
@@ -57,34 +56,28 @@ class Program
         Console.WriteLine("--- Sale Total Calculator ---");
 
         // ENTER YOUR CODE HERE
-        Console.Write("What is product name of the item you are purchasing?");
-        string item = Console.ReadLine();
 
-        Console.WriteLine($"How many{item}'s do you want to buy?");
-        int quantity = int.Parse(Console.ReadLine());
+        const double taxrate = 0.085;
 
-        Console.WriteLine($"What is the price for each {item}");
-        double price = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("What is the product name of the item you are purchasing?");
+        string productname = Console.ReadLine();
 
-        // setup tax constant
-        const double sales_tax_percent = .085;
+        Console.WriteLine($"How many {productname}'s do you want to buy?");
+        int quantity = Convert.ToInt32(Console.ReadLine());
 
-        // calculate total
-        double subtotal = quantity * price;
-        double sales_tax = subtotal * sales_tax_percent;
-        double total = subtotal + sales_tax;
+        Console.WriteLine($"What is the price for each {productname}?");
+        double price = double.Parse(Console.ReadLine());
 
-        Console.WriteLine($"Your subtotal for your bill is {subtotal:C2}");
-        Console.WriteLine($"Your sales tax for your bill is {sales_tax:C2}");
-        Console.WriteLine($"Your total for your bill is {total:C2}");
+        Console.WriteLine($"Please enter the discount amount for the {productname}:");
+        double discount = double.Parse(Console.ReadLine());
 
-        // also where you write your pseudocodes
+        double subtotal = (quantity * price) - discount;
+        double salesTax = subtotal * taxrate;
+        double total = subtotal + salesTax;
 
-        // Enter itemtype
-        // string itemtype = "xxx";
-
-        // Enter quantity
-        // int qty
+        Console.WriteLine($"\nYour subtotal for your bill is {subtotal:C2}.");
+        Console.WriteLine($"Your sales tax for your bill is {salesTax:C2}.");
+        Console.WriteLine($"Your total for your bill is {total:C2}.");
 
 
         Console.WriteLine("\nPress any key to return to menu...");
@@ -99,39 +92,56 @@ class Program
         Console.WriteLine("--- Student Grade Calculator ---");
 
         // ENTER YOUR CODE HERE
+
         Console.WriteLine("What is your first name?");
-        string first_name = Console.ReadLine();
+        string firstname = Console.ReadLine();
 
         Console.WriteLine("What is your last name?");
-        string last_name = Console.ReadLine();
+        string lastname = Console.ReadLine();
 
-        Console.WriteLine("What is your student id?");
-        int student_id = Convert.ToInt32(Console.ReadLine());
+        string fullName = firstname + " " + lastname;
+        Console.WriteLine($"Good morning, {fullName}!");
 
-        Console.WriteLine("What is your overall percentage grade for homeworks?");
-        double homeworks = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("What is your student ID?");
+        string studentID = Console.ReadLine();
 
-        Console.WriteLine("What is your overall percentage grade for participations?");
-        double participations = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("What is your grade for homeworks?");
+        double hw_grade = Convert.ToDouble(Console.ReadLine());
 
-        Console.WriteLine("What is your overall percentage grade for quizzes?");
-        double quizzes = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("What is your grade for participations?");
+        double parti_grade = Convert.ToDouble(Console.ReadLine());
 
-        Console.WriteLine("What is your overall percentage grade for the midterm?");
-        double midterm = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("What is your grade for quizzes?");
+        double quiz_grade = Convert.ToDouble(Console.ReadLine());
 
-        Console.WriteLine("What is your overall percentage grade for the final?");
-        double final = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("What is your grade for the midterm?");
+        double midterm_grade = Convert.ToDouble(Console.ReadLine());
 
-        const double homeworks_percentage = 0.20;
-        const double particpations_percentage = 0.20;
-        const double quizzes_percentage = 0.20;
-        const double midterm_percentage = 0.20;
-        const double final_percentage = 0.20;
+        Console.WriteLine("What is your grade for the final exam?");
+        double finalexam_grade = Convert.ToDouble(Console.ReadLine());
 
-        double final_grade = ((homeworks * homeworks_percentage) + (participations * particpations_percentage) + (quizzes * quizzes_percentage) + (midterm * midterm_percentage) + (final * final_percentage));
+        // enter percentage weights
+        Console.WriteLine("What is the weight for homeworks? (between 0 - 1)");
+        double hw_weight = Convert.ToDouble(Console.ReadLine());
 
-        Console.WriteLine($"{first_name} {last_name} ({student_id}), your final grade is {final_grade:F2}%");
+        Console.WriteLine("What is the weight for participations (between 0 - 1)?");
+        double parti_weight = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("What is the weight for quizzes? (between 0 - 1)");
+        double quiz_weight = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("What is the weight for the midterm? (between 0 - 1)");
+        double midterm_weight = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("What is the weight for the final exam? (between 0 - 1)");
+        double finalexam_weight = Convert.ToDouble(Console.ReadLine());
+
+
+        double finalgrade = hw_grade * hw_weight + parti_grade * parti_weight + quiz_grade * quiz_weight + midterm_grade * midterm_weight + finalexam_grade * finalexam_weight;
+
+        Console.WriteLine($"{firstname} {lastname} ({studentID}): your grade is {finalgrade:F2}.");
+
+
 
         Console.WriteLine("\nPress any key to return to menu...");
         Console.ReadKey();
